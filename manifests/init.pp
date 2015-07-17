@@ -10,4 +10,5 @@
 class profile_rundeck
 {
   class { 'rundeck': }
+  class { 'puppetdb_rundeck': }
 }
