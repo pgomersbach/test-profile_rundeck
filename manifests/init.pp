@@ -27,7 +27,7 @@ class profile_rundeck (
     path    => '/var/lib/rundeck/projects/management/etc/project.properties',
     section => '',
     setting => 'plugin.script-exec.default.command',
-    value   => '/usr/bin/mco',
+    value   => '/usr/bin/mco shell --np --dt 1 -I /${node.name}/ --cmd=\'${exec.command}\'',
 #    require => File[$properties_file],
   }
 
