@@ -12,14 +12,18 @@ class profile_rundeck (
   $puppetdb_port = '8080',
   $port = '4567',
 ){
+  include ::archive
+
   class { 'rundeck': }
+
+  rundeck::config::plugin { 'mcollective-plugin':
+    name   => 'rundeck-mcollective-nodes-1.1-plugin.zip',
+    source => 'https://github.com/connaryscott/rundeck-mcollective-nodes/raw/master/dist/rundeck-mcollective-nodes-1.1-plugin.zip',
+  }
 
   rundeck::config::project { 'management':
     file_copier_provider   => 'script-copy',
     node_executor_provider => 'script-exec',
-#    script_interpreter     => 'bash -c',
-#    script_file            => '/usr/bin/mco',
-#    script_args            => 'shell --np --dt 1 -I /${node.name}/ --cmd=\'${exec.command}\'',
   }
 
   ini_setting { "management::plugin.script-exec.default.command":
