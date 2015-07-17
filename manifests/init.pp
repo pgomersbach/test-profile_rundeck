@@ -14,9 +14,19 @@ class profile_rundeck (
 ){
   class { 'rundeck': }
 
+$myframework_config = {
+    'framework.ssh.user'        => 'rundeck',
+    'framework.ssh.timeout'     => '0',
+    'rundeck.server.uuid'       => $::serialnumber,
+  }
+
   rundeck::config::project { 'management':
     file_copier_provider   => 'script-copy',
     node_executor_provider => 'script-exec',
+    framework_config       => $myframework_config,
+#    script_interpreter     => 'bash -c',
+#    script_file            => '/usr/bin/mco',
+#    script_args            => 'shell --np --dt 1 -I /${node.name}/ --cmd=\'${exec.command}\'',
   }
 
   rundeck::config::resource_source { 'resource':
