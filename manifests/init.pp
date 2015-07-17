@@ -14,6 +14,11 @@ class profile_rundeck (
 ){
   class { 'rundeck': }
 
+  rundeck::config::project { 'management':
+    file_copier_provider   => 'stub',
+    node_executor_provider => 'stub',
+  }
+
   package { 'puppetdb_rundeck':
     ensure   => installed,
     provider => gem,
