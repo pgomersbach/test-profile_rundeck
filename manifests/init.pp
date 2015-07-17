@@ -9,7 +9,7 @@
 #
 class profile_rundeck (
   $puppetdb_host = 'localhost',
-  $puppetdb_post = '8080',
+  $puppetdb_port = '8080',
   $port = '4567',
 ){
   class { 'rundeck': }
