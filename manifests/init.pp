@@ -15,8 +15,8 @@ class profile_rundeck (
   class { 'rundeck': }
 
   rundeck::config::project { 'management':
-    file_copier_provider   => 'stub',
-    node_executor_provider => 'stub',
+    file_copier_provider   => 'script-copy',
+    node_executor_provider => 'script-exec',
   }
 
   rundeck::config::resource_source { 'resource':
