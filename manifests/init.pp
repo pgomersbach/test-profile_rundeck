@@ -19,6 +19,16 @@ class profile_rundeck (
     node_executor_provider => 'stub',
   }
 
+  rundeck::config::resource_source { 'resource':
+    project_name        => 'management',
+    number              => '1',
+    source_type         => 'url',
+    url                 => 'http://localhost:4567',
+    url_cache           => false,
+    include_server_node => false,
+    resource_format     => 'resourceyaml',
+  }
+
   package { 'puppetdb_rundeck':
     ensure   => installed,
     provider => gem,
