@@ -16,7 +16,7 @@ class profile_rundeck (
 
 $myframework_config = {
     'framework.ssh.user'        => 'rundeck',
-    'framework.ssh.timeout'     => '0',
+    'plugin.script-exec.default.command'     => '/usr/bin/mco',
     'rundeck.server.uuid'       => $::serialnumber,
   }
 
