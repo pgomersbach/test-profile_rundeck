@@ -14,19 +14,21 @@ class profile_rundeck (
 ){
   class { 'rundeck': }
 
-$myframework_config = {
-    'framework.ssh.user'        => 'rundeck',
-    'plugin.script-exec.default.command'     => '/usr/bin/mco',
-    'rundeck.server.uuid'       => $::serialnumber,
-  }
-
   rundeck::config::project { 'management':
     file_copier_provider   => 'script-copy',
     node_executor_provider => 'script-exec',
-    framework_config       => $myframework_config,
 #    script_interpreter     => 'bash -c',
 #    script_file            => '/usr/bin/mco',
 #    script_args            => 'shell --np --dt 1 -I /${node.name}/ --cmd=\'${exec.command}\'',
+  }
+
+  ini_setting { "management::plugin.script-exec.default.command":
+    ensure  => present,
+    path    => '/var/lib/rundeck/projects/management/etc/project.properties',
+    section => '',
+    setting => 'plugin.script-exec.default.command',
+    value   => '/usr/bin/mco',
+#    require => File[$properties_file],
   }
 
   rundeck::config::resource_source { 'resource':
