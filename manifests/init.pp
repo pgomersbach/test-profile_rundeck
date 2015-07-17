@@ -9,5 +9,5 @@
 #
 class profile_rundeck
 {
-  # a profile class includes one or more classes, please include below
+  class { 'rundeck': }
 }

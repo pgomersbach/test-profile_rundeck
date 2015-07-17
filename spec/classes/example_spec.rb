@@ -16,7 +16,7 @@ describe 'profile_rundeck' do
           it { is_expected.to compile.with_all_deps }
           it { is_expected.to contain_class('profile_rundeck') }
 
-          it { is_expected.to contain_class('profile_rundeck') }
+          it { is_expected.to contain_class('rundeck') }
   
 
         end
