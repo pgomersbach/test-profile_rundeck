@@ -7,15 +7,17 @@
 # [*sample_parameter*]
 #   Explanation of what this parameter affects and what it defaults to.
 #
-class profile_rundeck
-{
+class profile_rundeck (
+  $puppetdb_host = 'localhost',
+  $puppetdb_post = '8080',
+  $port = '4567',
+){
   class { 'rundeck': }
 
   package { 'puppetdb_rundeck':
     ensure   => installed,
     provider => gem,
   }
-
 
   case downcase($osfamily) {
     'debian': {
