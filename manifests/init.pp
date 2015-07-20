@@ -26,8 +26,16 @@ class profile_rundeck (
     section => '',
     setting => 'plugin.script-exec.default.command',
     value   => '/usr/bin/mco shell run --np --dt 1 -I /${node.name}/ \'${exec.command}\'',
-#    require => File[$properties_file],
   }
+
+  ini_setting { "management::plugin.script-copy.default.command":
+    ensure  => present,
+    path    => '/var/lib/rundeck/projects/management/etc/project.properties',
+    section => '',
+    setting => 'plugin.script-copy.default.command',
+    value   => 'boo /${node.name}/ \'${exec.command}\'',
+  }
+
 
   rundeck::config::resource_source { 'resource':
     project_name        => 'management',
