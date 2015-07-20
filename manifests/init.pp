@@ -15,11 +15,6 @@ class profile_rundeck (
 
   class { 'rundeck': }
 
-#  rundeck::config::plugin { 'mcollective-plugin':
-#    name   => 'rundeck-mcollective-nodes-1.1-plugin.zip',
-#    source => 'https://github.com/connaryscott/rundeck-mcollective-nodes/raw/master/dist/rundeck-mcollective-nodes-1.1-plugin.zip',
-#  }
-
   rundeck::config::project { 'management':
     file_copier_provider   => 'script-copy',
     node_executor_provider => 'script-exec',
@@ -38,10 +33,9 @@ class profile_rundeck (
     project_name        => 'management',
     number              => '1',
     source_type         => 'url',
-    url                 => 'http://localhost:4567',
+    url                 => 'http://localhost:4567/api/xml',
     url_cache           => false,
     include_server_node => false,
-    resource_format     => 'resourceyaml',
   }
 
   package { 'puppetdb_rundeck':
