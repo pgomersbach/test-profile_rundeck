@@ -1,0 +1,12 @@
+fixtures:
+  repositories:
+    stdlib: "https://github.com/puppetlabs/puppetlabs-stdlib.git"
+
+# profile module layout, default include ntp module
+    rspec_monitor: "git://github.com/pgomersbach/test-rspec_monitor.git"
+    inifile: "https://github.com/puppetlabs/puppetlabs-inifile"
+    archive: "https://github.com/camptocamp/puppet-archive.git"
+    rundeck: "https://github.com/puppet-community/puppet-rundeck.git"
+
+  symlinks:
+    profile_rundeck: "#{source_dir}"
