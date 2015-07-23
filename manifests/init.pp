@@ -20,7 +20,7 @@ class profile_rundeck (
     node_executor_provider => 'script-exec',
   }
 
-  ini_setting { "management::plugin.script-exec.default.command":
+  ini_setting { 'management::plugin.script-exec.default.command':
     ensure  => present,
     path    => '/var/lib/rundeck/projects/management/etc/project.properties',
     section => '',
@@ -29,7 +29,7 @@ class profile_rundeck (
     require => Rundeck::Config::Project[ 'management' ],
   }
 
-  ini_setting { "management::plugin.script-copy.default.command":
+  ini_setting { 'management::plugin.script-copy.default.command':
     ensure  => present,
     path    => '/var/lib/rundeck/projects/management/etc/project.properties',
     section => '',
@@ -53,7 +53,7 @@ class profile_rundeck (
     provider => gem,
   }
 
-  case downcase($osfamily) {
+  case downcase($::osfamily) {
     'debian': {
       $content = template('profile_rundeck/debian_service.erb')
     }
