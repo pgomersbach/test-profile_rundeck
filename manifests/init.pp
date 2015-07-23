@@ -53,30 +53,9 @@ class profile_rundeck (
     provider => gem,
   }
 
-  case downcase($::osfamily) {
-    'debian': {
-      $content = template('profile_rundeck/debian_service.erb')
-    }
-    'redhat': {
-      $content = template('profile_rundeck/redhat_service.erb')
-    }
-    default: {}
+  rundeck::config::plugin { 'mcollective-plugin':
+    name   => 'rundeck-mcollective-nodes-1.1-plugin.zip',
+    source => 'https://github.com/connaryscott/rundeck-mcollective-nodes/raw/master/dist/rundeck-mcollective-nodes-1.1-plugin.zip',
   }
 
-  file { '/etc/init.d/puppetdb_rundeck':
-    ensure  => present,
-    content => $content,
-    owner   => root,
-    group   => root,
-    mode    => '0755',
-    notify  => Service['puppetdb_rundeck']
-  }
-
-  service { 'puppetdb_rundeck':
-    ensure     => running,
-    enable     => true,
-    hasstatus  => true,
-    hasrestart => true,
-    require    => File['/etc/init.d/puppetdb_rundeck']
-  }
 }
