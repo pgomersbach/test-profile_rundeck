@@ -52,9 +52,9 @@ class profile_rundeck (
     provider => gem,
   }
 
-  rundeck::config::plugin { 'mcollective-plugin':
-    name   => 'rundeck-mcollective-nodes-1.1-plugin.zip',
-    source => 'https://github.com/connaryscott/rundeck-mcollective-nodes/raw/master/dist/rundeck-mcollective-nodes-1.1-plugin.zip',
-  }
+#  rundeck::config::plugin { 'mcollective-plugin':
+#    name   => 'rundeck-mcollective-nodes-1.1-plugin.zip',
+#    source => 'https://github.com/connaryscott/rundeck-mcollective-nodes/raw/master/dist/rundeck-mcollective-nodes-1.1-plugin.zip',
+#  }
 
 }
