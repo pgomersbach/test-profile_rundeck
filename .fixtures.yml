@@ -6,6 +6,7 @@ fixtures:
     rspec_monitor: "git://github.com/pgomersbach/test-rspec_monitor.git"
     inifile: "https://github.com/puppetlabs/puppetlabs-inifile"
     archive: "https://github.com/puppet-community/puppet-archive.git"
+    java: "https://github.com/puppetlabs/puppetlabs-java.git"
     rundeck: "https://github.com/puppet-community/puppet-rundeck.git"
 
   symlinks:

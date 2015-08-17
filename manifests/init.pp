@@ -12,7 +12,7 @@ class profile_rundeck (
   $puppetdb_port = '8080',
   $port = '4567',
 ){
-
+  include java
   class { 'rundeck': }
 
   rundeck::config::project { 'management':
