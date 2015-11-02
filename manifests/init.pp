@@ -14,7 +14,9 @@ class profile_rundeck (
 ){
   if $::ec2_public_ipv4 != undef {
     $public_hostname = $::ec2_public_ipv4
+  }
   else 
+  {
     if $::ec2_metadata != undef {
       $public_hostname = $::facts['ec2_metadata']['public-hostname']
     }
