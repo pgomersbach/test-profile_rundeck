@@ -11,9 +11,14 @@ class profile_rundeck (
   $puppetdb_host = 'localhost',
   $puppetdb_port = '8080',
   $port = '4567',
+  $public_hostname = $::facts['ec2_metadata']['public-hostname']
 ){
   include java
-  class { 'rundeck': }
+  class { 'rundeck':
+    framework_config => {
+      'framework.server.url' => "http://${public_hostname}:4440",
+    },
+  }
 
   rundeck::config::project { 'management':
     file_copier_provider   => 'script-copy',
