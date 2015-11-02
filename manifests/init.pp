@@ -11,8 +11,15 @@ class profile_rundeck (
   $puppetdb_host = 'localhost',
   $puppetdb_port = '8080',
   $port = '4567',
-  $public_hostname = $::facts['ec2_metadata']['public-hostname']
 ){
+#  if $::facts['ec2_metadata']['public-hostname'] != undef {
+  if $::ec2_metadata != undef {
+    $public_hostname = $::facts['ec2_metadata']['public-hostname']
+  }
+  else {
+    $public_hostname = $::fqdn
+  }
+
   include java
   class { 'rundeck':
     framework_config => {
