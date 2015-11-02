@@ -69,11 +69,9 @@ class profile_rundeck (
     provider => gem,
   }
 
-  rundeck::config::plugin { 'json-plugin':
-    name   => 'rundeck-json-plugin-1.1.jar',
-    source => 'https://github.com/rundeck-plugins/rundeck-json-plugin/releases/download/v1.1/rundeck-json-plugin-1.1.jar'
+  file { '/var/lib/rundeck/libext/rundeck-json-plugin-1.1.jar':
+    source => 'puppet:///modules/profile_rundeck/rundeck-json-plugin-1.1.jar'
   }
-
 
   file { '/var/lib/rundeck/libext/rundeck-mcollective-nodes-1.1-plugin.zip':
     source => 'puppet:///modules/profile_rundeck/rundeck-mcollective-nodes-1.1-plugin.zip',
