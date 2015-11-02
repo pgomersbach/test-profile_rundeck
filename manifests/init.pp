@@ -12,12 +12,15 @@ class profile_rundeck (
   $puppetdb_port = '8080',
   $port = '4567',
 ){
-#  if $::facts['ec2_metadata']['public-hostname'] != undef {
-  if $::ec2_metadata != undef {
-    $public_hostname = $::facts['ec2_metadata']['public-hostname']
-  }
-  else {
-    $public_hostname = $::fqdn
+  if $::ec2_public_ipv4 != undef {
+    $public_hostname = $::ec2_public_ipv4
+  else 
+    if $::ec2_metadata != undef {
+      $public_hostname = $::facts['ec2_metadata']['public-hostname']
+    }
+    else {
+      $public_hostname = $::fqdn
+    }
   }
 
   include java
