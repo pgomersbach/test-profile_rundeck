@@ -30,7 +30,7 @@ class profile_rundeck (
     path    => '/var/lib/rundeck/projects/management/etc/project.properties',
     section => '',
     setting => 'plugin.script-exec.default.command',
-    value   => '/usr/bin/mco shell run --np --dt 1 -I /${node.name}/ \'${exec.command}\'',
+    value   => '/opt/puppetlabs/bin/mco shell run --np --dt 1 -I /${node.name}/ \'${exec.command}\'',
     require => Rundeck::Config::Project[ 'management' ],
   }
 
