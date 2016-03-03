@@ -28,13 +28,15 @@ class profile_rundeck (
   include java
   class { 'rundeck':
     framework_config => {
-      'framework.server.url' => "http://${public_hostname}:4440",
+      'framework.server.url'   => "http://${public_hostname}:4440",
+      'framework.projects.dir' => '/var/rundeck/projects',
     },
   }
 
   rundeck::config::project { 'management':
     file_copier_provider   => 'script-copy',
     node_executor_provider => 'script-exec',
+    ssh_keypath            => '/var/lib/rundeck/.ssh/id_rsa',
   }
 
   ini_setting { 'management::plugin.script-exec.default.command':
