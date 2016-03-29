@@ -72,7 +72,7 @@ class profile_rundeck (
   }
 
   file { '/var/lib/rundeck/libext/rundeck-json-plugin-1.1.jar':
-    source => 'puppet:///modules/profile_rundeck/rundeck-json-plugin-1.1.jar'
+    source => 'puppet:///modules/profile_rundeck/rundeck-json-plugin-1.1.jar',
   }
 
   file { '/var/lib/rundeck/libext/rundeck-mcollective-nodes-1.1-plugin.zip':
