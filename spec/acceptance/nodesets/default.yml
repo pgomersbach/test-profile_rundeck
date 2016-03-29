@@ -8,5 +8,5 @@ HOSTS:
     hypervisor: vagrant
 
 CONFIG:
-  log_level: info
+  log_level: debug
   type: foss

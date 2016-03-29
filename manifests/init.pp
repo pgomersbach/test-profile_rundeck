@@ -27,10 +27,7 @@ class profile_rundeck (
 
   include java
   class { 'rundeck':
-    framework_config => {
-      'framework.server.url'   => "http://${public_hostname}:4440",
-      'framework.projects.dir' => '/var/rundeck/projects',
-    },
+    server_web_context => "http://${public_hostname}:4440",
   }
 
   rundeck::config::project { 'management':
@@ -39,23 +36,23 @@ class profile_rundeck (
     ssh_keypath            => '/var/lib/rundeck/.ssh/id_rsa',
   }
 
-  ini_setting { 'management::plugin.script-exec.default.command':
-    ensure  => present,
-    path    => '/var/lib/rundeck/projects/management/etc/project.properties',
-    section => '',
-    setting => 'plugin.script-exec.default.command',
-    value   => '/opt/puppetlabs/bin/mco shell run --np --dt 1 -I /${node.name}/ \'${exec.command}\'',
-    require => Rundeck::Config::Project[ 'management' ],
-  }
+#  ini_setting { 'management::plugin.script-exec.default.command':
+#    ensure  => present,
+#    path    => '/var/lib/rundeck/projects/management/etc/project.properties',
+#    section => '',
+#    setting => 'plugin.script-exec.default.command',
+#    value   => '/opt/puppetlabs/bin/mco shell run --np --dt 1 -I /${node.name}/ \'${exec.command}\'',
+#    require => Rundeck::Config::Project[ 'management' ],
+#  }
 
-  ini_setting { 'management::plugin.script-copy.default.command':
-    ensure  => present,
-    path    => '/var/lib/rundeck/projects/management/etc/project.properties',
-    section => '',
-    setting => 'plugin.script-copy.default.command',
-    value   => 'boo /${node.name}/ \'${exec.command}\'',
-    require => Rundeck::Config::Project[ 'management' ],
-  }
+#  ini_setting { 'management::plugin.script-copy.default.command':
+#    ensure  => present,
+#    path    => '/var/lib/rundeck/projects/management/etc/project.properties',
+#    section => '',
+#    setting => 'plugin.script-copy.default.command',
+#    value   => 'boo /${node.name}/ \'${exec.command}\'',
+#    require => Rundeck::Config::Project[ 'management' ],
+#  }
 
   rundeck::config::resource_source { 'resource':
     project_name        => 'management',
